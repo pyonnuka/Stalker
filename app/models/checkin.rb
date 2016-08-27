@@ -1,4 +1,4 @@
 class Checkin < ActiveRecord::Base
   belongs_to :user
-  has_one :artist
+  belongs_to :artist
 end

@@ -1,5 +1,6 @@
 class Artist < ActiveRecord::Base
   has_many :positions
+  has_many :checkins
 
   def self.find_or_create_from_auth(auth)
     provider = auth[:provider]
