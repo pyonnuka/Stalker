@@ -3,27 +3,33 @@
 <div class="row">
 
 <% @artists.each do |artist| %>
-<div class="col-xs-12">
-  <div class="artistbox colorwhite">
+  <%= link_to artist, {:controller => "artists", :action => "show"} do %>
+    <div class="col-xs-12">
+      <div class="artistbox colorwhite">
+        <div class="artistbox_name">
+          <%= artist.name%>からの距離
+        </div>
 
-<div class="artistbox_name">
-  <%= artist.name%>からの距離
-</div>
+        <div class="artistdistance centeredimg" data-latitude="35.6813" data-longitude="139.7662">
+          測定中...
+        </div>
 
-<div class="artistdistance centeredimg">
-  602340m
-</div>
+        <div class="artistupdated floatright">
+          3分前に更新
+        </div>
 
-<div class="artistupdated floatright">
-  3分前に更新
-</div>
-
-
-  </div>
-  <div class="space10px"></div>
-  <div class="space10px"></div>
-</div>
+      </div>
+      <div class="space10px"></div>
+      <div class="space10px"></div>
+    </div>
+  <% end %>
 <% end %>
 </div>
 
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function(){
+    updatePosition()
+  })
+</script>
