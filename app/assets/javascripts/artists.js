@@ -55,6 +55,14 @@ function dispRoute() {
     var request = {
         origin:start,
         destination:end,
+        waypoints:[
+        {
+        location: "東京駅"
+        },
+        {
+        location: "北海道"
+        }
+        ],
         travelMode: google.maps.TravelMode.DRIVING
     };
     directionsService.route(request, function(result, status) {
