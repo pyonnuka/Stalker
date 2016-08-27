@@ -1,4 +1,6 @@
 class Artist < ActiveRecord::Base
+  has_many :positions
+
   def self.find_or_create_from_auth(auth)
     provider = auth[:provider]
     uid = auth[:uid]
@@ -9,5 +11,9 @@ class Artist < ActiveRecord::Base
       artist.name = name
       artist.image_url = image_url
     end
+  end
+
+  def now_position
+    Position.all
   end
 end
