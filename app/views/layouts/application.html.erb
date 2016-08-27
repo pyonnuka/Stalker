@@ -4,12 +4,15 @@
   <title>Stalker</title>
   <script src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyDAWH7ZG6MXwAcm9edMlFBe97GI8-hrrfQ&callback=start_func"
           async defer></script>
+  <script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyAKJFsi5EpC_xsb3NaAGN31wroWnk-MyXI&sensor=false"
+          type="text/javascript" charset="utf-8"></script>
+  <script src="maps.js" type="text/javascript"></script>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body onload="initialize()" onunload="GUnload()">
 <% if logged_in? %>
   <%= link_to 'ログアウト', logout_path %>
 <% else %>
