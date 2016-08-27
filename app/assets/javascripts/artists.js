@@ -22,7 +22,7 @@ function get_location(){
 
         $("#your_position").text("あなたの場所: " + potitionLatitude + "." + potitionLongitude)
         $("#area_name").text("あなたとの距離: " + distance + "m")
-    }, errorCallback, {
+    }, null, {
         enableHighAccuracy: true,
         maximumAge: 0
     });
