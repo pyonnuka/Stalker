@@ -25,6 +25,8 @@ create_table "positions", force: :cascade do |t|
   t.string   "event_title"
   t.string   "event_url"
   t.datetime "in_there_at"
+  t.datetime "start_at"
+  t.datetime "end_at"
   t.datetime "created_at"
   t.datetime "updated_at"
 end
