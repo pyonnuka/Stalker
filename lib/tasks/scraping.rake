@@ -52,10 +52,9 @@ namespace :scraping do
         detail = item.css('.action-area').css('a').attribute('href').value
         detail_page = "http://lead-idol.com/#{detail}"
         date = item.css('.date.ng-binding').text.remove("\t").remove("\n").remove("(月)").remove("(火)").remove("(水)").remove("(木)").remove("(金)").remove("(土)").remove("(日)")
-        binding.pry
         artist.positions << Position.create(:event_title => title, :name => positions, :event_url => detail_page, :in_there_at => date)
       end
-      if number > 1
+      if number > 1615
         break
       end
     end
