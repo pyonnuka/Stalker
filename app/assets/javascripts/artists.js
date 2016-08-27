@@ -13,30 +13,43 @@ function start_func(){
 
 function get_location(){
     navigator.geolocation.watchPosition
-    (successCallback,errorCallback,{
+    (function(pos) {
+        var potitionLatitude = pos.coords.latitude;
+        var potitionLongitude = pos.coords.longitude;
+        var me = new google.maps.LatLng(potitionLatitude, potitionLongitude);
+
+        var distance = google.maps.geometry.spherical.computeDistanceBetween(me, you);
+
+        $("#your_position").text("あなたの場所: " + potitionLatitude + "." + potitionLongitude)
+        $("#area_name").text("あなたとの距離: " + distance + "m")
+    }, null, {
         enableHighAccuracy: true,
         maximumAge: 0
     });
 }
 
-function successCallback (pos){
-    var potitionLatitude = pos.coords.latitude;
-    var potitionLongitude = pos.coords.longitude;
-    var me = new google.maps.LatLng(potitionLatitude, potitionLongitude);
 
-    var distance = google.maps.geometry.spherical.computeDistanceBetween(me, you);
-    distance = distance|0
 
-    // $("#your_position").text("あなたの場所: " + potitionLatitude + "." + potitionLongitude)
-    // $("#area_name").text("あなたとの距離: " + distance + "m")
-    $("#area_name_tabmap").text(distance + "m")
-    $("#area_name_tabranking").text(distance + "m")
+function updatePosition() {
+    navigator.geolocation.watchPosition
+    (function(pos){
+        var myPositionLatitude = pos.coords.latitude;
+        var myPositionLongitude = pos.coords.longitude;
+        var me = new google.maps.LatLng(myPositionLatitude, myPositionLongitude);
+
+        $(".artistdistance").each(function(){
+            latitude = $(this).data('latitude')
+            longitude = $(this).data('longitude')
+
+            you = new google.maps.LatLng(latitude, longitude);
+            $(this).text(Math.round(google.maps.geometry.spherical.computeDistanceBetween(me, you)) + "m");
+        })
+    }, null, {
+        enableHighAccuracy: true,
+        maximumAge: 0
+    });
 }
 
-function errorCallback(error) {
-    message = "位置情報が許可されていません";
-    document.getElementById("area_name").innerHTML = message;
-}
 
 
 function initialize() {
