@@ -5,5 +5,5 @@
 2. database.ymlに自分のDBのユーザー名とパスワードを書く
 
 * データベース作成
-1. rake db:crete
+1. rake db:create
 2. bundle exec ridgepole -c config/database.yml -f db/Schemafile --apply
