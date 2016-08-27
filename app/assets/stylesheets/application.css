@@ -18,8 +18,35 @@
 .space10px{
   height:10px;
 }
-.colorwhite{
+.colorwhite, a.colorwhite{
   color:white;
+}
+
+/*.verticalalign{
+  display:table-cell;
+  vertical-align: middle;
+}*/
+
+.row div{
+  vertical-align: middle;
+}
+
+.centeredimg{
+  text-align: center;
+}
+
+/*.centeredblock{
+  display: block;
+  margin: 0 auto;
+}*/
+
+
+.line{
+  height:0.5px;
+  background-color: white;
+  opacity: 0.2;
+  width:50%;
+  margin-left:25%;
 }
 
 /*MATERIALS: COLORS*/
@@ -55,17 +82,19 @@ html, body {
 
 
 
-
 /*PAGE: ARTIST#SHOW*/
+
+/*PAGE: ARTIST#SHOW --TOP*/
 .artistname{
   font-size: 29px;
 }
 .artistrank{
   font-size: 22px;
+  vertical-align: middle;
 }
 .followbutton > button{
   font-size: 10px;
-  border:5px;
+  border:1px;
   border-color:white;
   background-color: #91E3C2;
   border-radius:6px;
@@ -74,6 +103,50 @@ html, body {
   font-size:11px;
 }
 
+/*PAGE: TABS*/
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus{
+  background:transparent;
+  border: 1px solid white;
+  color:white;
+}
+
+ul.nav-tabs li{
+  width:50%;
+  text-align: center;
+}
+
+.myrank{
+  font-size:23px;
+}
+
+.mydistance{
+  font-size:27px;
+}
+
+.myupdate{
+  font-size:9px;
+}
+
+.mystatus div{
+  /*text-align: center;*/
+}
+
+/*PAGE: ARTIST#SHOW --TAB1: MAP*/
 
 
 
+/*PAGE: ARTIST#SHOW --TOP2: RANKING*/
+
+.userranking{
+  background-color: rgba(255,255,255,0.2);
+  color:white;
+  margin:10px;
+  padding:20px;
+  font-size:18px;
+}
+
+.ranktitle{
+  opacity: 1;
+  color:white;
+  font-size:10px;
+}
