@@ -1,1 +1,27 @@
-index
+<div class="container">
+<div class="row">
+
+<!-- TODO: Sort by nearest distance -->
+<% @artists.each do |artist| %>
+<div class="col-xs-12">
+  <div class="artistbox colorwhite">
+
+<div class="artistbox_name">
+  <%= artist.name%>
+</div>
+
+<div class="artistdistance centeredimg">
+  602340m
+</div>
+
+<div class="artistupdated floatright">
+  3分前に更新
+</div>
+
+  </div>
+  <div class="space10px"></div>
+  <div class="space10px"></div>
+</div>
+<% end %>
+</div>
+</div>
