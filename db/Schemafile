@@ -12,6 +12,7 @@ create_table "checkins", force: :cascade do |t|
   t.integer "artist_id"
   t.float "latitude"
   t.float "longitude"
+  t.float "distance"
   t.datetime "created_at"
   t.datetime "updated_at"
 end
