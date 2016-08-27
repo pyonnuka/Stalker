@@ -134,7 +134,6 @@ ul.nav-tabs li{
 /*PAGE: ARTIST#SHOW --TAB1: MAP*/
 
 
-
 /*PAGE: ARTIST#SHOW --TOP2: RANKING*/
 
 .userranking{
@@ -142,7 +141,7 @@ ul.nav-tabs li{
   color:white;
   margin:10px;
   padding:20px;
-  font-size:18px;
+  font-size:16px;
 }
 
 .ranktitle{
