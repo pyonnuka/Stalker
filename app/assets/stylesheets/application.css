@@ -16,10 +16,14 @@
 
 /*MATERIALS: GENERAL*/
 .space10px{
+  display:block;
   height:10px;
 }
 .colorwhite, a.colorwhite{
   color:white;
+}
+.floatright{
+  float:right;
 }
 
 /*.verticalalign{
@@ -56,6 +60,7 @@ element{
    --bgcolor-top:#36E1B5;
    --bgcolor-bottom:#6E3FC5;
    --bgcolor-followbutton:#91E3C2;
+   --white:rgba(255,255,255,0.2);
 }
 
 /*COMMON PARTS: BODY*/
@@ -81,6 +86,27 @@ html, body {
 /*COMMON PARTS: CONTAINER*/
 
 
+
+
+/*PAGES*/
+
+/*PAGE: HOME#INDEX*/
+.artistbox{
+  height:125px;
+  border: 1px solid white;
+  border-radius:8px;
+  padding:15px;
+}
+
+.artistbox_name{
+  font-size:19px;
+}
+.artistdistance{
+  font-size:36px;
+}
+.artistupdated{
+  font-size:11px;
+}
 
 /*PAGE: ARTIST#SHOW*/
 
@@ -127,13 +153,7 @@ ul.nav-tabs li{
   font-size:9px;
 }
 
-.mystatus div{
-  /*text-align: center;*/
-}
-
 /*PAGE: ARTIST#SHOW --TAB1: MAP*/
-
-
 
 /*PAGE: ARTIST#SHOW --TOP2: RANKING*/
 
@@ -142,7 +162,7 @@ ul.nav-tabs li{
   color:white;
   margin:10px;
   padding:20px;
-  font-size:18px;
+  font-size:16px;
 }
 
 .ranktitle{

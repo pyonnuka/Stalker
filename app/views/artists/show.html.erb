@@ -12,37 +12,41 @@
 
 <!-- MY DISTANCE -->
 
-
-<!-- TABS -->
+<!-- tabs for testing -->
 
 <div class="tabbable">
  <ul class="nav nav-tabs">
-  <li class="active"><a class="colorwhite" href="#map" data-toggle="tab">マップ</a></li>
-  <li><a class="colorwhite" href="#ranking" data-toggle="tab">ランキング</a></li>
+  <li class="active"><a class="colorwhite" href="#home" data-toggle="tab">マップ</a></li>
+  <li><a href="#tab1" data-toggle="tab" class="colorwhite">ランキング</a></li>
+  <!-- <li><a href="#tab2" data-toggle="tab">タブ2</a></li> -->
  </ul>
  <div id="my-tab-content" class="tab-content">
-<!--   <div class="tab-pane active" id="map">
-  </div> -->
-  <div class="tab-pane" id="map">
-
-  <!-- TAB 1: MY DISTANCE -->
-
-  <!-- TAB 1: MAP -->
-   <p>mapの中身</p>
-
-  </div>
+  <div class="tab-pane active" id="home">
 
 
-
-  <!-- TAB 2: RANKING -->
-  <div class="tab-pane" id="ranking">
   <div class="space10px"></div>
 
   <!-- TAB 2: MY DISTANCE -->
   <div class="row colorwhite mystatus centeredimg">
     <div class="col-xs-4 myrank">10位</div>
-    <div class="col-xs-4 mydistance">4,000m</div>
-    <div class="col-xs-4 myupdate">1分前にチェックイン</div>
+    <div id="area_name_tabmap" class="col-xs-4 mydistance"></div>
+    <div class="col-xs-4 myupdate"></div>
+  </div>
+  <div class="line"></div>
+
+<div class="space10px"></div>
+
+<div id="artist" data-json="#{@artist.position.to_json}"></div>
+<div id="map_canvas" style="width: 100%; height: 300px"></div>
+  </div>
+  <div class="tab-pane" id="tab1">
+  <div class="space10px"></div>
+
+  <!-- TAB 2: MY DISTANCE -->
+  <div class="row colorwhite mystatus centeredimg">
+    <div class="col-xs-4 myrank">10位</div>
+    <div id="area_name_tabranking" class="col-xs-4 mydistance"></div>
+    <div class="col-xs-4 myupdate"></div>
   </div>
 
   <div class="line"></div>
@@ -51,29 +55,30 @@
 
   <!-- TAB 2: RANKING INDEX-->
   <div class="row userranking centeredimg">
-    <div class="col-xs-2 ranks colorwhite">順位</div>
-    <div class="col-xs-6 names">ユーザー名</div>
-    <div class="col-xs-4 distances">距離</div>
+    <div class="col-xs-2 ranktitle ranks">順位</div>
+    <div class="col-xs-6 ranktitle names">ユーザー名</div>
+    <div class="col-xs-4 ranktitle distances">距離</div>
 
     <div class="col-xs-2 ranks">1位</div>
     <div class="col-xs-6 names">田中</div>
     <div class="col-xs-4 distances">1,000m</div>
+
+    <div class="col-xs-2 ranks">2位</div>
+    <div class="col-xs-6 names">田中</div>
+    <div class="col-xs-4 distances">1,030m</div>
+
+    <div class="col-xs-2 ranks">3位</div>
+    <div class="col-xs-6 names">田中</div>
+    <div class="col-xs-4 distances">2,000m</div>
+
   </div>
 
-
+  </div>
+  <div class="tab-pane" id="tab2">
+   <p>tab2</p>
   </div>
  </div>
 </div>
 
-
-<!-- TAB 3: CALENDAR -->
-
 </div>
-
-
-<div id="artist" data-json="#{@artist.position.to_json}"></div>
-<div id="map_canvas" style="width: 500px; height: 300px"></div>
-
-<p>位置情報を取得しています....</p>
-<div id="your_position"></div>
-<div id="area_name"></div>
+<!-- end of container -->

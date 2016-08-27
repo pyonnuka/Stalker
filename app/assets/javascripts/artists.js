@@ -25,9 +25,12 @@ function successCallback (pos){
     var me = new google.maps.LatLng(potitionLatitude, potitionLongitude);
 
     var distance = google.maps.geometry.spherical.computeDistanceBetween(me, you);
+    distance = distance|0
 
-    $("#your_position").text("あなたの場所: " + potitionLatitude + "." + potitionLongitude)
-    $("#area_name").text("あなたとの距離: " + distance + "m")
+    // $("#your_position").text("あなたの場所: " + potitionLatitude + "." + potitionLongitude)
+    // $("#area_name").text("あなたとの距離: " + distance + "m")
+    $("#area_name_tabmap").text(distance + "m")
+    $("#area_name_tabranking").text(distance + "m")
 }
 
 function errorCallback(error) {
