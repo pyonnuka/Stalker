@@ -31,5 +31,7 @@ create_table "positions", force: :cascade do |t|
   t.datetime "in_there_at"
   t.datetime "created_at"
   t.datetime "updated_at"
+  t.float    "latitude"
+  t.float    "longitude"
 end
 add_index "positions", ["artist_id"], name: "positions_artist_index", using: :btree
