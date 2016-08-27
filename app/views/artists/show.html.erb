@@ -9,11 +9,16 @@
     <script src="maps.js" type="text/javascript"></script>
   </head>
   <body onload="initialize()" onunload="GUnload()">
-
+    <div id="artist" data-json="#{@artist.position.to_json}"></div>
     <div id="map_canvas" style="width: 500px; height: 300px"></div>
     <script>
       var map;
       var directions;
+
+      $(function(){
+        var json = $('#artist').data('json');
+        typeof(json);
+      });
 
       function initialize() {
         if (GBrowserIsCompatible()) {
@@ -25,10 +30,11 @@
       }
 
       function dispRoute() {
-
+        var pointArray = [];
         directions.clear();
-
-        var pointArray = ["新宿","渋谷","東京","北海道"];
+        for(var i = 0;i < json.length;i++){
+          pointArray.push(json[0]);
+        }
         directions.loadFromWaypoints(pointArray, {locale: 'ja_JP'});
       }
 
