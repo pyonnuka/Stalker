@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get 'artist/:id/map', to: 'artists#map'
 
   root 'home#index'
+  get 'login', to: 'home#login'
 end
