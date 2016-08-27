@@ -6,8 +6,4 @@ class HomeController < ApplicationController
   def login
     redirect_to action: :index if current_user
   end
-
-  def welcome
-    
-  end
 end

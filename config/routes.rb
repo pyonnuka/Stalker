@@ -4,6 +4,5 @@ Rails.application.routes.draw do
   get 'artist/:id', to: 'artists#show'
 
   root 'home#index'
-  get 'welcome', to: 'home#welcome'
   get 'login', to: 'home#login'
 end
