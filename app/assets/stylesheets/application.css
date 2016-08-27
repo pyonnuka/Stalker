@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+.navbar-inverse{
+  background-color:#3A474E;
+  border:none;
+  border-radius:inherit;
+}
+.navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-nav > li > a{
+  color:white;
+}
