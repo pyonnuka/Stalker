@@ -9,3 +9,4 @@
 Artist.create(id:'2', name:'はるちゃん2')
 Artist.create(id:'3', name:'はるちゃん3')
 Artist.create(id:'4', name:'はるちゃん')
+

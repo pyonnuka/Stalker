@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>Stalker</title>
+  <script src="https://maps.googleapis.com/maps/api/js?file=api&libraries=geometry&key=AIzaSyDAWH7ZG6MXwAcm9edMlFBe97GI8-hrrfQ&callback=start_func"
+          async defer></script>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -10,7 +13,6 @@
 
 </head>
 <body>
-
 <!-- Top Bar -->
     <div id="menu">
       <nav class="navbar navbar-inverse">
@@ -35,7 +37,6 @@
         </div>
       </nav>
     </div>
-
 
 
   <%= yield %>
