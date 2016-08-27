@@ -1,14 +1,29 @@
-hihi
 
 <div class="container">
-
 <div class="row">
 
-<div class="col-xs-12 space10px artistbox"></div>
-<div class="col-xs-12 space10px"></div>
-<div class="col-xs-12 space10px"></div>
+<% @artists.each do |artist| %>
+<div class="col-xs-12">
+  <div class="artistbox colorwhite">
+
+<div class="artistbox_name">
+  <%= artist.name%>からの距離
+</div>
+
+<div class="artistdistance centeredimg">
+  602340m
+</div>
+
+<div class="artistupdated floatright">
+  3分前に更新
+</div>
 
 
+  </div>
+  <div class="space10px"></div>
+  <div class="space10px"></div>
+</div>
+<% end %>
 </div>
 
 </div>

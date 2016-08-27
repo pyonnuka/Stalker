@@ -31,7 +31,6 @@ function successCallback (pos){
     // $("#area_name").text("あなたとの距離: " + distance + "m")
     $("#area_name_tabmap").text(distance + "m")
     $("#area_name_tabranking").text(distance + "m")
-
 }
 
 function errorCallback(error) {
