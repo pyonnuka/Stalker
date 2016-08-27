@@ -12,17 +12,11 @@ function start_func(){
 }
 
 function get_location(){
-    if (navigator.geolocation) {
-        navigator.geolocation.watchPosition
-        (successCallback,errorCallback,{
-            enableHighAccuracy: true,
-            maximumAge: 0
-        });
-    } else {
-        message = "本ブラウザではGeolocationが使えません";
-        document.getElementById("area_name").innerHTML
-            = message;
-    }
+    navigator.geolocation.watchPosition
+    (successCallback,errorCallback,{
+        enableHighAccuracy: true,
+        maximumAge: 0
+    });
 }
 
 function successCallback (pos){
@@ -34,14 +28,12 @@ function successCallback (pos){
 
     $("#your_position").text("あなたの場所: " + potitionLatitude + "." + potitionLongitude)
     $("#area_name").text("あなたとの距離: " + distance + "m")
-
 }
 
 function errorCallback(error) {
     message = "位置情報が許可されていません";
     document.getElementById("area_name").innerHTML = message;
 }
-
 
 
 function initialize() {
