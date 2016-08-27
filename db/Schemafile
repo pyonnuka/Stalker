@@ -10,7 +10,6 @@ end
 create_table "checkins", force: :cascade do |t|
   t.integer "user_id"
   t.integer "artist_id"
-  t.string "name"
   t.string "latitude"
   t.string "longitude"
   t.datetime "created_at"
