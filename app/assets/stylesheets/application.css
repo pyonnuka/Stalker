@@ -14,6 +14,23 @@
  *= require_self
  */
 
+@-webkit-keyframes pulse {
+ from {
+   opacity: 1.0;/*透明度100%*/
+ }
+ to {
+   opacity: 0.7;/*透明度80%*/
+ }
+}
+.blinking{
+-webkit-animation-name: pulse;/* 実行する名前 */
+-webkit-animation-duration: 0.9s;/* 0.3秒かけて実行 */
+-webkit-animation-iteration-count:infinite;/* 何回実行するか。infiniteで無限 */
+-webkit-animation-timing-function:ease-in-out;/* イーズインアウト */
+-webkit-animation-direction: alternate;/* alternateにするとアニメーションが反復 */
+-webkit-animation-delay: 0s; /* 実行までの待ち時間 */
+}
+
 /*MATERIALS: GENERAL*/
 .space10px{
   display:block;
@@ -29,7 +46,9 @@
 .floatright{
   float:right;
 }
-
+.clear{
+  clear:both;
+}
 /*.verticalalign{
   display:table-cell;
   vertical-align: middle;
@@ -99,8 +118,14 @@ html, body {
   height:125px;
   border: 1px solid white;
   border-radius:8px;
-  padding:15px;
-  box-shadow:6px 2px 6px #182167;
+  box-shadow:0px 2px 6px #182167;
+}
+/*not used for some reason*/
+.artistboxborder{
+  border:5px solid rgba(255,255,255,0.2);
+  border-radius:8px;
+  padding:18px;
+  background-color: rgba(255,255,255,0.1);
 }
 
 .artistbox_name{
@@ -120,10 +145,12 @@ html, body {
   font-size: 29px;
 }
 .artistrank{
+  padding-top: 5px;
   font-size: 22px;
   vertical-align: middle;
 }
 .followbutton > button{
+  margin-top:10px;
   font-size: 10px;
   border:1px;
   border-color:white;
@@ -147,6 +174,7 @@ ul.nav-tabs li{
 }
 
 .myrank{
+  margin-top:25px;
   font-size:23px;
 }
 
