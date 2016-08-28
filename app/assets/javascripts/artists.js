@@ -5,8 +5,6 @@ var directionsDisplay;
 var directionsService;
 var waypoints = [];
 
-
-
 function start_func(){
     artistLatitude = $(".mydistance").data('latitude')
     artistLongitude = $(".mydistance").data('longitude')
@@ -109,4 +107,3 @@ function dispRoute() {
         }
     });
 }
-

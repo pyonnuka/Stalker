@@ -1,8 +1,11 @@
 class ArtistsController < ApplicationController
   def show
     @artist = Artist.find(params[:id])
-    artist_positions = Position.find_by(artist_id: "#{@artist.id}")
-    gon.position = @artist.positions.where.not(name: nil).map{ |p| p.name }
+    gon.positions = @artist.positions.map{ |p| p.name }
+    @checkins_order_by_ranking = Checkin.where(artist: @artist).sort_by do |checkin|
+      checkin.distance
+    # @distance =
+    end
   end
 
   def index

@@ -1,3 +1,30 @@
+<!-- ALERT -->
+<div id="loveAlert" class="alert" style="display:none;">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <%= @artist.name %>と同じ色の空を見てるかも！
+</div>
+
+<!-- alert 2 -->
+<script type="text/javascript">
+  function alert_func(){
+    var distance = document.getElementById("area_name_tabmap").innerHTML;
+        distance = Number(distance.substring(0, distance.length - 1));
+        if (distance>0 && distance < 8000){
+        document.getElementById("loveAlert").style.display = 'block';
+    }
+  }
+
+$('#area_name_tabmap').trigger('DistanceChanged');
+$('#area_name_tabmap').on('DistanceChanged', function(distance) {
+  alert("changed");
+});
+
+</script>
+
+<!-- trigger alert 2 -->
+<input type="button" value="Click Me" onclick="alert_func();" />
+
+
 <div class="container">
   <!-- INFO -->
   <div class="row colorwhite centeredimg">
@@ -8,8 +35,6 @@
   <div class="space10px"></div>
   <div class="updatetime colorwhite">１０分前更新</div>
   <div class="space10px"></div>
-
-<!-- MY DISTANCE -->
 
 <!-- TABS -->
 <div class="tabbable">
@@ -26,42 +51,41 @@
 
   <!-- TAB 1: MY DISTANCE -->
   <div class="row colorwhite mystatus centeredimg">
-    <div class="col-xs-4 myrank">10位</div>
-    <div id="area_name_tabmap" class="col-xs-4 mydistance" data-latitude="<%= @artist.now_position.present? ? @artist.now_position.latitude : "" %>"
-         data-longitude="<%= @artist.now_position.present? ? @artist.now_position.longitude : "" %>"></div>
-    <div class="col-xs-4 myupdate">
-      <div class="space10px"></div>
-      <!-- TWITTER SHARE -->
-      <a class="twitter-share-button floatright" data-text="#あの人に、もっと近く #アイドルGO from カウモハッカソン" href="https://twitter.com/share" data-dnt="true">Tweet</a>
+    <div class="col-xs-4 myrank"></div>
+    <div class="col-xs-4">
+      <div>
+        <%=@artist.name%>からの距離
+      </div>
+      <div id="area_name_tabmap" class="mydistance"></div>
     </div>
+    <div class="col-xs-4 myupdate"></div>
   </div>
   <div class="line"></div>
 
   <div class="space10px"></div>
   <div class="space10px"></div>
 
-  <div class="space10px"></div>
-    <!-- form_for Checkin.new -->
-<!--       <input type="hidden" name="artist_id" value="<%= @artist.id %>">
-      <input type="hidden" name="distance" value="" class="input-distance">
-      <input type="hidden" name="latitude" value="" class="input-latitude">
-      <input type="hidden" name="longitude" value="" class="input-longitude">
-      <div class="centeredimg"><button type="submit" class="checkinbutton colorwhite twitter-share-button">ここでチェックイン</button></div> -->
-
-
     <!-- TAB 1: MAP -->
     <div id="artist" data-json="#{@artist.position.to_json}"></div>
     <div id="map_canvas" style="width: 100%; height: 300px; opacity: 0.8; border-radius:7px"></div>
 
+  <div class="space10px"></div>
+    <div class="centeredimg"><button type="" class="checkinbutton colorwhite">この距離を記録する</button></div>
   </div>
 
   <div class="tab-pane" id="tab1">
+  <div class="space10px"></div>
   <div class="space10px"></div>
 
   <!-- TAB 2: MY DISTANCE -->
   <div class="row colorwhite mystatus centeredimg">
     <div class="col-xs-4 myrank">10位</div>
-    <div id="area_name_tabranking" class="col-xs-4 mydistance"></div>
+    <div class="col-xs-4">
+      <div>
+        <%=@artist.name%>からの距離
+      </div>
+      <div id="area_name_tabranking" class="mydistance"></div>
+    </div>
     <div class="col-xs-4 myupdate"></div>
   </div>
   <div class="line"></div>
@@ -69,12 +93,19 @@
 
   <!-- TAB 2: RANKING INDEX-->
   <div class="userranking centeredimg">
-  <div class="row">
-      <div class="col-xs-2 ranktitle ranks">順位</div>
-      <div class="col-xs-6 ranktitle names">ユーザー名</div>
-      <div class="col-xs-4 ranktitle distances">距離</div>
-  </div>
-    <div id="ranking"></div>
+<div class="row">
+    <div class="col-xs-2 ranktitle ranks">順位</div>
+    <div class="col-xs-6 ranktitle names">ユーザー名</div>
+    <div class="col-xs-4 ranktitle distances">距離</div>
+</div>
+
+    <% @checkins_order_by_ranking.each_with_index do |checkin, i| %>
+      <div class="row">
+        <div class="col-xs-2 ranks"><%= i + 1%>位</div>
+        <div class="col-xs-6 names"><%= checkin.user.nickname %></div>
+        <div class="col-xs-4 distances"><%= "#{checkin.distance}m" %></div>
+      </div>
+    <% end %>
   </div>
 
   </div>
@@ -84,65 +115,3 @@
 
 </div>
 <!-- end of container -->
-
-<!-- Twitter SHARE -->
-<script>
-window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
-</script>
-
-
-<script>
-  var dispatcher = new WebSocketRails('localhost:3000/websocket');
-  var sortRanking = function() {
-//      $('#ranking').html(
-//          $(this).children().sort(function(a, b) {
-//              aDistance = $(a).children('.distances').text()
-//              bDistance = $(b).children('.distances').text()
-//              return parseInt(aDistance) - parseInt(bDistance)
-//          })
-//      );
-
-      var rank = 1
-      $('#ranking .ranks').each(function(){
-        $(this).text(rank + "位")
-        rank++
-      })
-  }
-
-  $(function(){
-    dispatcher.bind("show_message", function(data){
-
-      $("#ranking .row").each(function(){
-        if ($(this).children('.names').text() == data.nickname) {
-          if(parseInt($(this).children('.distances').text()) > parseInt(data.distance)) {
-            $(this).children('.distances').text(data.distance)
-          }
-
-          sortRanking();
-          return;
-        }
-      })
-
-      $("#ranking").append(
-          "<div class=\"row\">" +
-          "<div class=\"col-xs-2 ranks\"></div>" +
-          "<div class=\"col-xs-6 names\">" + data.nickname + "</div>" +
-          "<div class=\"col-xs-4 distances\">" + data.distance + "</div>" +
-          "</div>"
-      )
-      sortRanking();
-    });
-
-
-    var distance = $('#area_name_tabmap').text()
-    var a = function() {
-      if (distance != $('#area_name_tabmap').text()) {
-        if (distance != null) {
-          dispatcher.trigger("send_message", {artist_id: <%= @artist.id %>, distance: $('#area_name_tabmap').text(), nickname: "<%= current_user.nickname %>"})
-        }
-        distance = $('#area_name_tabmap').text();
-      }
-    };
-    setInterval(a, 300);
-  });
-</script>
