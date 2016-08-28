@@ -4,9 +4,6 @@ source 'https://rubygems.org'
 gem 'therubyracer' # javascript runtime。lessをコンパイルするために必要
 gem 'less-rails' # Railsでlessを使えるようにする。Bootstrapがlessで書かれているため
 gem 'twitter-bootstrap-rails' # Bootstrapの本体
-
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.3.13', '< 0.5'
@@ -64,5 +61,6 @@ end
 group :production do
   gem 'heroku'
   gem 'pg'
+  gem 'rails_12factor'
 end
 
