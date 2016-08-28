@@ -14,24 +14,22 @@
  *= require_self
  */
 
-
 @-webkit-keyframes pulse {
  from {
    opacity: 1.0;/*透明度100%*/
  }
  to {
-   opacity: 0.6;/*透明度80%*/
+   opacity: 0.7;/*透明度80%*/
  }
 }
 .blinking{
 -webkit-animation-name: pulse;/* 実行する名前 */
--webkit-animation-duration: 0.8s;/* 0.3秒かけて実行 */
+-webkit-animation-duration: 0.9s;/* 0.3秒かけて実行 */
 -webkit-animation-iteration-count:infinite;/* 何回実行するか。infiniteで無限 */
 -webkit-animation-timing-function:ease-in-out;/* イーズインアウト */
 -webkit-animation-direction: alternate;/* alternateにするとアニメーションが反復 */
 -webkit-animation-delay: 0s; /* 実行までの待ち時間 */
 }
-
 
 /*MATERIALS: GENERAL*/
 .space10px{
@@ -122,6 +120,7 @@ html, body {
   border-radius:8px;
   box-shadow:0px 2px 6px #182167;
 }
+/*not used for some reason*/
 .artistboxborder{
   border:5px solid rgba(255,255,255,0.2);
   border-radius:8px;
@@ -146,6 +145,7 @@ html, body {
   font-size: 29px;
 }
 .artistrank{
+  padding-top: 5px;
   font-size: 22px;
   vertical-align: middle;
 }
