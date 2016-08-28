@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
-  resources :artists, :only => [:show]
+  resources :artists, :only => [:show, :index]
 
   root 'home#index'
   get 'login', to: 'home#login'
