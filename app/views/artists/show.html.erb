@@ -118,7 +118,68 @@ $('#area_name_tabmap').on('DistanceChanged', function(distance) {
 <!-- end of container -->
 
 
+
 <!-- Twitter SHARE -->
 <script>
 window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+
+<script>
+  var dispatcher = new WebSocketRails('localhost:3000/websocket');
+  var sortRanking = function() {
+      sortedHtml =
+          $("#ranking .row").sort(function(a, b) {
+            aDistance = $(a).children('.distances').text()
+            bDistance = $(b).children('.distances').text()
+            return parseInt(aDistance) - parseInt(bDistance)
+          });
+
+      console.log(sortedHtml)
+      $('#ranking').html(sortedHtml);
+
+      var rank = 1
+      $('#ranking .ranks').each(function(){
+        $(this).text(rank + "位")
+        rank++
+      })
+  }
+
+  $(function(){
+    dispatcher.bind("show_message", function(data){
+
+      var alreadyRankingUser = false
+      $("#ranking .row").each(function(){
+        if ($(this).children('.names').text() == data.nickname) {
+          if(parseInt($(this).children('.distances').text()) > parseInt(data.distance)) {
+            $(this).children('.distances').text(data.distance)
+          }
+
+          sortRanking();
+          alreadyRankingUser = true
+        }
+      })
+
+      if (!alreadyRankingUser) {
+        $("#ranking").append(
+            "<div class=\"row\">" +
+            "<div class=\"col-xs-2 ranks\"></div>" +
+            "<div class=\"col-xs-6 names\">" + data.nickname + "</div>" +
+            "<div class=\"col-xs-4 distances\">" + data.distance + "</div>" +
+            "</div>"
+        )
+        sortRanking();
+      }
+    });
+
+
+    var distance = $('#area_name_tabmap').text()
+    var a = function() {
+      if (distance != $('#area_name_tabmap').text()) {
+        if (distance != null) {
+          dispatcher.trigger("send_message", {artist_id: <%= @artist.id %>, distance: $('#area_name_tabmap').text(), nickname: "<%= current_user.nickname %>"})
+        }
+        distance = $('#area_name_tabmap').text();
+      }
+    };
+    setInterval(a, 300);
+  });
 </script>
