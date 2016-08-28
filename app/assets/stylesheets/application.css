@@ -19,7 +19,7 @@
    opacity: 1.0;/*透明度100%*/
  }
  to {
-   opacity: 0.7;/*透明度80%*/
+   opacity: 0.6;/*透明度80%*/
  }
 }
 .blinking{
@@ -108,9 +108,6 @@ html, body {
 
 /*COMMON PARTS: CONTAINER*/
 
-
-
-
 /*PAGES*/
 
 /*PAGE: HOME#INDEX*/
@@ -124,8 +121,11 @@ html, body {
 .artistboxborder{
   border:5px solid rgba(255,255,255,0.2);
   border-radius:8px;
-  padding:18px;
+  padding:10px;
   background-color: rgba(255,255,255,0.1);
+}
+.artistboxborderindex{
+  padding:18px;
 }
 
 .artistbox_name{

@@ -18,9 +18,10 @@
             <%= artist.name%>
           </div>
 
-          <div class="artistdistance centeredimg" data-latitude="35.6813" data-longitude="139.7662">
-            測定中...
-          </div>
+        <div class="artistdistance centeredimg" data-latitude="<%= artist.now_position.present? ? artist.now_position.latitude : "" %>"
+             data-longitude="<%= artist.now_position.present? ? artist.now_position.longitude : "" %>">
+          測定中...
+        </div>
 
           <div class="artistupdated floatright">
             3分前に更新
