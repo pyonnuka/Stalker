@@ -5,8 +5,6 @@ var directionsDisplay;
 var directionsService;
 var waypoints = [];
 
-
-
 function start_func(){
     you = new google.maps.LatLng(35.681382, 139.76608399999998); // 東京駅
     directionsService = new google.maps.DirectionsService();
@@ -100,4 +98,3 @@ function dispRoute() {
         }
     });
 }
-

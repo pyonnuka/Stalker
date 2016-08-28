@@ -14,6 +14,7 @@
  *= require_self
  */
 
+/*PULSE ANIMATION*/
 @-webkit-keyframes pulse {
  from {
    opacity: 1.0;/*透明度100%*/
@@ -30,6 +31,35 @@
 -webkit-animation-direction: alternate;/* alternateにするとアニメーションが反復 */
 -webkit-animation-delay: 0s; /* 実行までの待ち時間 */
 }
+
+
+
+/* ALERT */
+.alert {
+    padding: 20px;
+    background-color: yellow;
+    color: white;
+    margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
+
+
 
 /*MATERIALS: GENERAL*/
 .space10px{

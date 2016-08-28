@@ -1,3 +1,25 @@
+<!-- ALERT -->
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <%= @artist.name %>と同じ色の空を見てるかも！
+</div>
+
+<!-- alert 2 -->
+<script type="text/javascript">
+  function alert_func(){
+            console.log("function called");
+    var distance = document.getElementById("area_name_tabmap").innerHTML;
+        distance = Number(distance.substring(0, distance.length - 1));
+        if (distance>0 && distance < 8000){
+            alert("同じ色の空を見てるかも！");
+    }
+  }
+</script>
+
+<!-- trigger alert 2 -->
+<input type="button" value="Click Me" onclick="alert_func();" />
+
+
 <div class="container">
   <!-- INFO -->
   <div class="row colorwhite centeredimg">
@@ -8,8 +30,6 @@
   <div class="space10px"></div>
   <div class="updatetime colorwhite">１０分前更新</div>
   <div class="space10px"></div>
-
-<!-- MY DISTANCE -->
 
 <!-- TABS -->
 <div class="tabbable">
@@ -46,7 +66,6 @@
 
   <div class="space10px"></div>
     <div class="centeredimg"><button type="" class="checkinbutton colorwhite">この距離を記録する</button></div>
-
   </div>
 
   <div class="tab-pane" id="tab1">

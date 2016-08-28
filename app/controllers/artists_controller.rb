@@ -4,6 +4,7 @@ class ArtistsController < ApplicationController
     gon.positions = @artist.positions.map{ |p| p.name }
     @checkins_order_by_ranking = Checkin.where(artist: @artist).sort_by do |checkin|
       checkin.distance
+    # @distance =
     end
   end
 
