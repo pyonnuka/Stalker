@@ -3,6 +3,7 @@ var you;
 var map;
 var directionsDisplay;
 var directionsService;
+var waypoints = [];
 
 
 
@@ -74,21 +75,34 @@ function initialize() {
     dispRoute();
 }
 function dispRoute() {
-    var start = "東京駅"
-    var end = "新宿"
-    var request = {
+    if (gon.position.length == 1){
+        var start = gon.position[0];
+        var end = gon.position[0];
+    }else if(gon.position.length == 2){
+        var start = gon.position[0];
+        var end = gon.position[1];
+    }else{
+        var start = gon.position[0];
+        var end = gon.position[1];
+    for( var i = 2;i < gon.positions.length; i++){
+            waypoints.push({location: gon.position[i]});
+        }
+    }
+
+    if (gon.position.length < 3){
+        var request = {
         origin:start,
         destination:end,
-        waypoints:[
-        {
-        location: "池袋"
-        },
-        {
-        location: gon.place
-        }
-        ],
         travelMode: google.maps.TravelMode.DRIVING
-    };
+        };
+    }else{
+        var request = {
+        origin:start,
+        destination:end,
+        waypoints:waypoints,
+        travelMode: google.maps.TravelMode.DRIVING
+        };
+    }
     directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(result);
