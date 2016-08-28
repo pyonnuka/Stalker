@@ -124,6 +124,7 @@ html, body {
   vertical-align: middle;
 }
 .followbutton > button{
+  margin-top:10px;
   font-size: 10px;
   border:1px;
   border-color:white;
