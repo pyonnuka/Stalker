@@ -49,12 +49,24 @@ namespace :scraping do
           hybrid_positions = positions
           positions = positions.sub(/\(.*?\)/,"").strip
         end
+        case
+        when positions == "Zepp DiverCity"
+          positions = "ダイバーシティ東京"
+        when positions == "HMV大宮アルシェ"
+          positions = "アルシェ"
+        when positions == "新星堂サンシャインシティアルタ店"
+          positions = "スタジオアルタ"
+        when positions == "HMVエソラ池袋"
+          positions = "Ｅｓｏｌａ池袋"
+        else
+          positions
+        end
         detail = item.css('.action-area').css('a').attribute('href').value
         detail_page = "http://lead-idol.com/#{detail}"
         date = item.css('.date.ng-binding').text.remove("\t").remove("\n").remove("(月)").remove("(火)").remove("(水)").remove("(木)").remove("(金)").remove("(土)").remove("(日)")
         artist.positions << Position.create(:event_title => title, :name => positions, :event_url => detail_page, :in_there_at => date)
       end
-      if number > 1615
+      if number > 25
         break
       end
     end
