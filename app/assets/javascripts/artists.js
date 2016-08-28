@@ -28,6 +28,9 @@ function get_location(){
         $("#your_position").text("あなたの場所: " + potitionLatitude + "." + potitionLongitude)
         $("#area_name_tabmap").text(distance + "m")
         $("#area_name_tabranking").text(distance + "m")
+        $(".input-distance").attr("value", distance)
+        $(".input-latitude").attr("value", potitionLatitude)
+        $(".input-longitude").attr("value", potitionLongitude)
     }, null, {
         enableHighAccuracy: true,
         maximumAge: 0

@@ -41,8 +41,13 @@
     <div id="map_canvas" style="width: 100%; height: 300px; opacity: 0.8; border-radius:7px"></div>
 
   <div class="space10px"></div>
-    <div class="centeredimg"><button type="" class="checkinbutton colorwhite">ここでチェックイン</button></div>
-
+    <%= form_for Checkin.new do %>
+      <input type="hidden" name="artist_id" value="<%= @artist.id %>">
+      <input type="hidden" name="distance" value="" class="input-distance">
+      <input type="hidden" name="latitude" value="" class="input-latitude">
+      <input type="hidden" name="longitude" value="" class="input-longitude">
+      <div class="centeredimg"><button type="submit" class="checkinbutton colorwhite">ここでチェックイン</button></div>
+    <% end %>
   </div>
 
   <div class="tab-pane" id="tab1">
