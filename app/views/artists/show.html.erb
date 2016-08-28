@@ -1,5 +1,5 @@
 <!-- ALERT -->
-<div class="alert">
+<div id="loveAlert" class="alert" style="display:none;">
   <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
   <%= @artist.name %>と同じ色の空を見てるかも！
 </div>
@@ -7,13 +7,18 @@
 <!-- alert 2 -->
 <script type="text/javascript">
   function alert_func(){
-            console.log("function called");
     var distance = document.getElementById("area_name_tabmap").innerHTML;
         distance = Number(distance.substring(0, distance.length - 1));
         if (distance>0 && distance < 8000){
-            alert("同じ色の空を見てるかも！");
+        document.getElementById("loveAlert").style.display = 'block';
     }
   }
+
+$('#area_name_tabmap').trigger('DistanceChanged');
+$('#area_name_tabmap').on('DistanceChanged', function(distance) {
+  alert("changed");
+});
+
 </script>
 
 <!-- trigger alert 2 -->
