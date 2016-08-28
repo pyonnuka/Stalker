@@ -5,7 +5,9 @@
 <% @artists.each do |artist| %>
   <%= link_to artist, {:controller => "artists", :action => "show"} do %>
     <div class="col-xs-12">
-      <div class="artistbox colorwhite">
+      <div class="artistbox colorwhite blinking">
+
+<div class="artistboxborder artistboxborderindex">
         <div class="artistbox_name">
           <%= artist.name%>からの距離
         </div>
@@ -18,7 +20,7 @@
         <div class="artistupdated floatright">
           3分前に更新
         </div>
-
+</div>
       </div>
       <div class="space10px"></div>
       <div class="space10px"></div>

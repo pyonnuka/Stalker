@@ -12,19 +12,22 @@
 <% @artists.each do |artist| %>
   <%= link_to artist, {:controller => "artists", :action => "show"} do %>
     <div class="col-xs-12">
-      <div class="artistbox colorwhite">
-        <div class="artistbox_name">
-          <%= artist.name%>
-        </div>
+      <div class="artistbox colorwhite blinking">
+        <div class="artistboxborder">
+          <div class="artistbox_name">
+            <%= artist.name%>
+          </div>
 
-        <div class="artistdistance centeredimg" data-latitude="35.6813" data-longitude="139.7662">
+        <div class="artistdistance centeredimg" data-latitude="<%= artist.now_position.present? ? artist.now_position.latitude : "" %>"
+             data-longitude="<%= artist.now_position.present? ? artist.now_position.longitude : "" %>">
           測定中...
         </div>
 
-        <div class="artistupdated floatright">
-          3分前に更新
+          <div class="artistupdated floatright">
+            3分前に更新
+          </div>
+        <div class="clear"></div>
         </div>
-
       </div>
       <div class="space10px"></div>
       <div class="space10px"></div>
@@ -34,3 +37,10 @@
 </div>
 
 </div>
+
+
+
+
+
+
+
