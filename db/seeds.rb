@@ -11,7 +11,7 @@ a2 = Artist.create(id:'3', name:'はるちゃん3')
 a3 = Artist.create(id:'4', name:'はるちゃん')
 
 a1.positions << Position.create(name: "渋谷", event_title: "ライブ", event_url: "http://twitter.com", in_there_at: "2016-8-28")
-a2.positions << Position.create(name: "埼玉スーパーアリーナ", event_title: "ライブ", event_url: "http://event.com", in_there_at: "2016-8-30")
+a2.positions << Position.create(name: "SSA", event_title: "ライブ", event_url: "http://event.com", in_there_at: "2016-8-30")
 a3.positions << Position.create(name: "東京ドーム", event_title: "ライブ", event_url: "http://twitter.com", in_there_at: "2016-8-31")
 
 u1 = User.create(provider: "twitter", uid: "1468911907", nickname: "ぬっかー", image_url: nil, created_at: nil, updated_at: nil)
