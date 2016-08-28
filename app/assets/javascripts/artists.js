@@ -8,7 +8,9 @@ var waypoints = [];
 
 
 function start_func(){
-    you = new google.maps.LatLng(35.681382, 139.76608399999998); // 東京駅
+    artistLatitude = $(".mydistance").data('latitude')
+    artistLongitude = $(".mydistance").data('longitude')
+    you = new google.maps.LatLng(artistLatitude, artistLongitude);
     directionsService = new google.maps.DirectionsService();
     get_location();
     initialize();
@@ -27,6 +29,9 @@ function get_location(){
         $("#your_position").text("あなたの場所: " + potitionLatitude + "." + potitionLongitude)
         $("#area_name_tabmap").text(distance + "m")
         $("#area_name_tabranking").text(distance + "m")
+        $(".input-distance").attr("value", distance)
+        $(".input-latitude").attr("value", potitionLatitude)
+        $(".input-longitude").attr("value", potitionLongitude)
     }, null, {
         enableHighAccuracy: true,
         maximumAge: 0
