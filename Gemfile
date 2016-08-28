@@ -47,6 +47,8 @@ gem 'nokogiri'
 gem 'selenium-webdriver'
 gem 'geocoder'
 gem 'kaminari'
+gem 'websocket-rails'
+gem 'faye-websocket', '0.10.0'
 
 
 group :development, :test do
