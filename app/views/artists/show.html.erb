@@ -102,6 +102,7 @@
   $(function(){
     dispatcher.bind("show_message", function(data){
 
+      var alreadyRankingUser = false
       $("#ranking .row").each(function(){
         if ($(this).children('.names').text() == data.nickname) {
           if(parseInt($(this).children('.distances').text()) > parseInt(data.distance)) {
@@ -109,20 +110,20 @@
           }
 
           sortRanking();
-          return;
+          alreadyRankingUser = true
         }
       })
 
-      $("#ranking").append(
-          "<div class=\"row\">" +
-          "<div class=\"col-xs-2 ranks\"></div>" +
-          "<div class=\"col-xs-6 names\">" + data.nickname + "</div>" +
-          "<div class=\"col-xs-4 distances\">" + data.distance + "</div>" +
-          "</div>"
-      )
-
-      sortRanking();
-
+      if (!alreadyRankingUser) {
+        $("#ranking").append(
+            "<div class=\"row\">" +
+            "<div class=\"col-xs-2 ranks\"></div>" +
+            "<div class=\"col-xs-6 names\">" + data.nickname + "</div>" +
+            "<div class=\"col-xs-4 distances\">" + data.distance + "</div>" +
+            "</div>"
+        )
+        sortRanking();
+      }
     });
 
 
