@@ -19,7 +19,11 @@
   display:block;
   height:10px;
 }
-.colorwhite, a.colorwhite{
+.space200px{
+  display: block;
+  height: 200px;
+}
+.colorwhite, a.colorwhite, button.colorwhite a{
   color:white;
 }
 .floatright{
@@ -169,4 +173,9 @@ ul.nav-tabs li{
   opacity: 1;
   color:white;
   font-size:10px;
+}
+
+/*PAGE: LOGIN*/
+.loginbutton{
+  background-color: #07a7b9;
 }
