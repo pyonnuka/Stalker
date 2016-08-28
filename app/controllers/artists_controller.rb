@@ -5,4 +5,8 @@ class ArtistsController < ApplicationController
       checkin.distance
     end
   end
+
+  def index
+    @artists=Artist.all
+  end
 end
