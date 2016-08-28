@@ -60,10 +60,6 @@ function updatePosition() {
     });
 }
 
-var infowindow = new google.maps.InfoWindow({
-    content: contentString
-});
-
 
 function initialize() {
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -79,26 +75,34 @@ function initialize() {
     dispRoute();
 }
 function dispRoute() {
-       var start = "東京"
-       var end = "東京"
-    if (gon.positions.length == 1){
-        var start = gon.positions[0]
-        var end = gon.positions[0]
-    }else if(gon.place.length == 2){
-        var start = gon.positions[0]
-        var end = gon.positions[1]
+    if (gon.position.length == 1){
+        var start = gon.position[0];
+        var end = gon.position[0];
+    }else if(gon.position.length == 2){
+        var start = gon.position[0];
+        var end = gon.position[1];
     }else{
-        var start = gon.positions[0]
-        var end = gon.positions[1]
+        var start = gon.position[0];
+        var end = gon.position[1];
     for( var i = 2;i < gon.positions.length; i++){
-            waypoints.push({location: gon.positions[i]});
+            waypoints.push({location: gon.position[i]});
         }
     }
-    var request = {
+
+    if (gon.position.length < 3){
+        var request = {
         origin:start,
         destination:end,
         travelMode: google.maps.TravelMode.DRIVING
-    };
+        };
+    }else{
+        var request = {
+        origin:start,
+        destination:end,
+        waypoints:waypoints,
+        travelMode: google.maps.TravelMode.DRIVING
+        };
+    }
     directionsService.route(request, function(result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(result);
