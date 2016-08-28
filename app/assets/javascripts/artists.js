@@ -82,7 +82,7 @@ function dispRoute() {
     }else{
         var start = gon.position[0];
         var end = gon.position[1];
-    for( var i = 2;i < gon.positions.length; i++){
+    for( var i = 2;i < gon.position.length; i++){
             waypoints.push({location: gon.position[i]});
         }
     }
