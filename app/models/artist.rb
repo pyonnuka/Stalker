@@ -18,5 +18,7 @@ class Artist < ActiveRecord::Base
     positions.order(:in_there_at).each.with_index(1) do |position, i|
       return positions[i - 1] if position.in_there_at > DateTime.now
     end
+
+    positions.last
   end
 end

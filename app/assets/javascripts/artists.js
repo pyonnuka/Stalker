@@ -4,6 +4,8 @@ var map;
 var directionsDisplay;
 var directionsService;
 
+
+
 function start_func(){
     you = new google.maps.LatLng(35.681382, 139.76608399999998); // 東京駅
     directionsService = new google.maps.DirectionsService();
@@ -53,7 +55,6 @@ function updatePosition() {
 }
 
 
-
 function initialize() {
     directionsDisplay = new google.maps.DirectionsRenderer();
     var latlng = new google.maps.LatLng(35.539001,134.228468);
@@ -68,17 +69,17 @@ function initialize() {
     dispRoute();
 }
 function dispRoute() {
-    var start = "渋谷"
+    var start = "東京駅"
     var end = "新宿"
     var request = {
         origin:start,
         destination:end,
         waypoints:[
         {
-        location: "東京駅"
+        location: "池袋"
         },
         {
-        location: "北海道"
+        location: gon.place
         }
         ],
         travelMode: google.maps.TravelMode.DRIVING
