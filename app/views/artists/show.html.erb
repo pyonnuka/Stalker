@@ -27,7 +27,8 @@
   <!-- TAB 1: MY DISTANCE -->
   <div class="row colorwhite mystatus centeredimg">
     <div class="col-xs-4 myrank">10位</div>
-    <div id="area_name_tabmap" class="col-xs-4 mydistance"></div>
+    <div id="area_name_tabmap" class="col-xs-4 mydistance" data-latitude="<%= @artist.now_position.present? ? @artist.now_position.latitude : "" %>"
+         data-longitude="<%= @artist.now_position.present? ? @artist.now_position.longitude : "" %>"></div>
     <div class="col-xs-4 myupdate"></div>
   </div>
   <div class="line"></div>

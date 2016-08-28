@@ -7,7 +7,9 @@ var directionsService;
 
 
 function start_func(){
-    you = new google.maps.LatLng(35.681382, 139.76608399999998); // 東京駅
+    artistLatitude = $(".mydistance").data('latitude')
+    artistLongitude = $(".mydistance").data('longitude')
+    you = new google.maps.LatLng(artistLatitude, artistLongitude);
     directionsService = new google.maps.DirectionsService();
     get_location();
     initialize();
