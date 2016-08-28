@@ -29,25 +29,30 @@
     <div class="col-xs-4 myrank">10位</div>
     <div id="area_name_tabmap" class="col-xs-4 mydistance" data-latitude="<%= @artist.now_position.present? ? @artist.now_position.latitude : "" %>"
          data-longitude="<%= @artist.now_position.present? ? @artist.now_position.longitude : "" %>"></div>
-    <div class="col-xs-4 myupdate"></div>
+    <div class="col-xs-4 myupdate">
+      <div class="space10px"></div>
+      <!-- TWITTER SHARE -->
+      <a class="twitter-share-button floatright" data-text="#あの人に、もっと近く #アイドルGO from カウモハッカソン" href="https://twitter.com/share" data-dnt="true">Tweet</a>
+    </div>
   </div>
   <div class="line"></div>
 
   <div class="space10px"></div>
   <div class="space10px"></div>
 
+  <div class="space10px"></div>
+    <!-- form_for Checkin.new -->
+<!--       <input type="hidden" name="artist_id" value="<%= @artist.id %>">
+      <input type="hidden" name="distance" value="" class="input-distance">
+      <input type="hidden" name="latitude" value="" class="input-latitude">
+      <input type="hidden" name="longitude" value="" class="input-longitude">
+      <div class="centeredimg"><button type="submit" class="checkinbutton colorwhite twitter-share-button">ここでチェックイン</button></div> -->
+
+
     <!-- TAB 1: MAP -->
     <div id="artist" data-json="#{@artist.position.to_json}"></div>
     <div id="map_canvas" style="width: 100%; height: 300px; opacity: 0.8; border-radius:7px"></div>
 
-  <div class="space10px"></div>
-    <%= form_for Checkin.new do %>
-      <input type="hidden" name="artist_id" value="<%= @artist.id %>">
-      <input type="hidden" name="distance" value="" class="input-distance">
-      <input type="hidden" name="latitude" value="" class="input-latitude">
-      <input type="hidden" name="longitude" value="" class="input-longitude">
-      <div class="centeredimg"><button type="submit" class="checkinbutton colorwhite">ここでチェックイン</button></div>
-    <% end %>
   </div>
 
   <div class="tab-pane" id="tab1">
@@ -64,12 +69,11 @@
 
   <!-- TAB 2: RANKING INDEX-->
   <div class="userranking centeredimg">
-<div class="row">
-    <div class="col-xs-2 ranktitle ranks">順位</div>
-    <div class="col-xs-6 ranktitle names">ユーザー名</div>
-    <div class="col-xs-4 ranktitle distances">距離</div>
-</div>
-
+  <div class="row">
+      <div class="col-xs-2 ranktitle ranks">順位</div>
+      <div class="col-xs-6 ranktitle names">ユーザー名</div>
+      <div class="col-xs-4 ranktitle distances">距離</div>
+  </div>
     <div id="ranking"></div>
   </div>
 
@@ -80,6 +84,12 @@
 
 </div>
 <!-- end of container -->
+
+<!-- Twitter SHARE -->
+<script>
+window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+</script>
+
 
 <script>
   var dispatcher = new WebSocketRails('localhost:3000/websocket');
@@ -120,9 +130,7 @@
           "<div class=\"col-xs-4 distances\">" + data.distance + "</div>" +
           "</div>"
       )
-
       sortRanking();
-
     });
 
 
