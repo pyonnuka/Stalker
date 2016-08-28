@@ -1,15 +1,40 @@
+<!-- ALERT -->
+<div id="loveAlert" class="alert" style="display:none;">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+  <%= @artist.name %>と同じ色の空を見てるかも！
+</div>
+
+<!-- alert 2 -->
+<script type="text/javascript">
+  function alert_func(){
+    var distance = document.getElementById("area_name_tabmap").innerHTML;
+        distance = Number(distance.substring(0, distance.length - 1));
+        if (distance>0 && distance < 8000){
+        document.getElementById("loveAlert").style.display = 'block';
+    }
+  }
+
+$('#area_name_tabmap').trigger('DistanceChanged');
+$('#area_name_tabmap').on('DistanceChanged', function(distance) {
+  alert("changed");
+});
+
+</script>
+
+<!-- trigger alert 2 -->
+<input type="button" value="Click Me" onclick="alert_func();" />
+
+
 <div class="container">
   <!-- INFO -->
   <div class="row colorwhite centeredimg">
     <div class="col-xs-6 artistname"><%=@artist.name%></div>
-    <div class="col-xs-2 artistrank">10位</div>
+    <div class="col-xs-2 artistrank"></div>
     <div class="col-xs-4 followbutton"><button>フォロー中</button></div>
   </div>
   <div class="space10px"></div>
   <div class="updatetime colorwhite">１０分前更新</div>
   <div class="space10px"></div>
-
-<!-- MY DISTANCE -->
 
 <!-- TABS -->
 <div class="tabbable">
@@ -26,9 +51,13 @@
 
   <!-- TAB 1: MY DISTANCE -->
   <div class="row colorwhite mystatus centeredimg">
-    <div class="col-xs-4 myrank">10位</div>
-    <div id="area_name_tabmap" class="col-xs-4 mydistance" data-latitude="<%= @artist.now_position.present? ? @artist.now_position.latitude : "" %>"
-         data-longitude="<%= @artist.now_position.present? ? @artist.now_position.longitude : "" %>"></div>
+    <div class="col-xs-4 myrank"></div>
+    <div class="col-xs-4">
+      <div>
+        <%=@artist.name%>からの距離
+      </div>
+      <div id="area_name_tabmap" class="mydistance"></div>
+    </div>
     <div class="col-xs-4 myupdate"></div>
   </div>
   <div class="line"></div>
@@ -41,22 +70,22 @@
     <div id="map_canvas" style="width: 100%; height: 300px; opacity: 0.8; border-radius:7px"></div>
 
   <div class="space10px"></div>
-    <%= form_for Checkin.new do %>
-      <input type="hidden" name="artist_id" value="<%= @artist.id %>">
-      <input type="hidden" name="distance" value="" class="input-distance">
-      <input type="hidden" name="latitude" value="" class="input-latitude">
-      <input type="hidden" name="longitude" value="" class="input-longitude">
-      <div class="centeredimg"><button type="submit" class="checkinbutton colorwhite">ここでチェックイン</button></div>
-    <% end %>
+    <div class="centeredimg"><button type="" class="checkinbutton colorwhite">この距離を記録する</button></div>
   </div>
 
   <div class="tab-pane" id="tab1">
+  <div class="space10px"></div>
   <div class="space10px"></div>
 
   <!-- TAB 2: MY DISTANCE -->
   <div class="row colorwhite mystatus centeredimg">
     <div class="col-xs-4 myrank">10位</div>
-    <div id="area_name_tabranking" class="col-xs-4 mydistance"></div>
+    <div class="col-xs-4">
+      <div>
+        <%=@artist.name%>からの距離
+      </div>
+      <div id="area_name_tabranking" class="mydistance"></div>
+    </div>
     <div class="col-xs-4 myupdate"></div>
   </div>
   <div class="line"></div>
@@ -70,7 +99,13 @@
     <div class="col-xs-4 ranktitle distances">距離</div>
 </div>
 
-    <div id="ranking"></div>
+    <% @checkins_order_by_ranking.each_with_index do |checkin, i| %>
+      <div class="row">
+        <div class="col-xs-2 ranks"><%= i + 1%>位</div>
+        <div class="col-xs-6 names"><%= checkin.user.nickname %></div>
+        <div class="col-xs-4 distances"><%= "#{checkin.distance}m" %></div>
+      </div>
+    <% end %>
   </div>
 
   </div>
