@@ -8,7 +8,9 @@ var waypoints = [];
 
 
 function start_func(){
-    you = new google.maps.LatLng(35.681382, 139.76608399999998); // 東京駅
+    artistLatitude = $(".mydistance").data('latitude')
+    artistLongitude = $(".mydistance").data('longitude')
+    you = new google.maps.LatLng(artistLatitude, artistLongitude);
     directionsService = new google.maps.DirectionsService();
     get_location();
     initialize();
@@ -22,9 +24,14 @@ function get_location(){
         var me = new google.maps.LatLng(potitionLatitude, potitionLongitude);
 
         var distance = google.maps.geometry.spherical.computeDistanceBetween(me, you);
+        distance=distance|0
 
         $("#your_position").text("あなたの場所: " + potitionLatitude + "." + potitionLongitude)
-        $("#area_name").text("あなたとの距離: " + distance + "m")
+        $("#area_name_tabmap").text(distance + "m")
+        $("#area_name_tabranking").text(distance + "m")
+        $(".input-distance").attr("value", distance)
+        $(".input-latitude").attr("value", potitionLatitude)
+        $(".input-longitude").attr("value", potitionLongitude)
     }, null, {
         enableHighAccuracy: true,
         maximumAge: 0
@@ -77,7 +84,7 @@ function dispRoute() {
     }else{
         var start = gon.position[0];
         var end = gon.position[1];
-    for( var i = 2;i < gon.positions.length; i++){
+    for( var i = 2;i < gon.position.length; i++){
             waypoints.push({location: gon.position[i]});
         }
     }
