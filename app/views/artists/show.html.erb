@@ -84,13 +84,15 @@
 <script>
   var dispatcher = new WebSocketRails('localhost:3000/websocket');
   var sortRanking = function() {
-//      $('#ranking').html(
-//          $(this).children().sort(function(a, b) {
-//              aDistance = $(a).children('.distances').text()
-//              bDistance = $(b).children('.distances').text()
-//              return parseInt(aDistance) - parseInt(bDistance)
-//          })
-//      );
+      sortedHtml =
+          $("#ranking .row").sort(function(a, b) {
+            aDistance = $(a).children('.distances').text()
+            bDistance = $(b).children('.distances').text()
+            return parseInt(aDistance) - parseInt(bDistance)
+          });
+
+      console.log(sortedHtml)
+      $('#ranking').html(sortedHtml);
 
       var rank = 1
       $('#ranking .ranks').each(function(){
@@ -102,6 +104,7 @@
   $(function(){
     dispatcher.bind("show_message", function(data){
 
+      var alreadyRankingUser = false
       $("#ranking .row").each(function(){
         if ($(this).children('.names').text() == data.nickname) {
           if(parseInt($(this).children('.distances').text()) > parseInt(data.distance)) {
@@ -109,20 +112,20 @@
           }
 
           sortRanking();
-          return;
+          alreadyRankingUser = true
         }
       })
 
-      $("#ranking").append(
-          "<div class=\"row\">" +
-          "<div class=\"col-xs-2 ranks\"></div>" +
-          "<div class=\"col-xs-6 names\">" + data.nickname + "</div>" +
-          "<div class=\"col-xs-4 distances\">" + data.distance + "</div>" +
-          "</div>"
-      )
-
-      sortRanking();
-
+      if (!alreadyRankingUser) {
+        $("#ranking").append(
+            "<div class=\"row\">" +
+            "<div class=\"col-xs-2 ranks\"></div>" +
+            "<div class=\"col-xs-6 names\">" + data.nickname + "</div>" +
+            "<div class=\"col-xs-4 distances\">" + data.distance + "</div>" +
+            "</div>"
+        )
+        sortRanking();
+      }
     });
 
 
