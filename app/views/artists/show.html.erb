@@ -4,23 +4,6 @@
   <%= @artist.name %>と同じ色の空を見てるかも！
 </div>
 
-<!-- alert 2 -->
-<script type="text/javascript">
-  function alert_func(){
-    var distance = document.getElementById("area_name_tabmap").innerHTML;
-        distance = Number(distance.substring(0, distance.length - 1));
-        if (distance==0){
-        document.getElementById("loveAlert").style.display = 'block';
-    }
-  }
-
-$('#area_name_tabmap').trigger('DistanceChanged');
-$('#area_name_tabmap').on('DistanceChanged', function(distance) {
-  alert("changed");
-});
-
-</script>
-
 <!-- trigger alert 2 -->
 <input type="button" value="Click Me" onclick="alert_func();" />
 
@@ -28,8 +11,8 @@ $('#area_name_tabmap').on('DistanceChanged', function(distance) {
 <div class="container">
   <!-- INFO -->
   <div class="row colorwhite centeredimg">
-    <div class="col-xs-6 artistname"><%=@artist.name%></div>
-    <div class="col-xs-2 artistrank"></div>
+    <div class="col-xs-8 artistname"><%=@artist.name%></div>
+    <div class="col-xs-0 artistrank"></div>
     <div class="col-xs-4 followbutton"><button>フォロー中</button></div>
   </div>
   <div class="space10px"></div>
@@ -122,6 +105,7 @@ $('#area_name_tabmap').on('DistanceChanged', function(distance) {
 <!-- Twitter SHARE -->
 <script>
 window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+</script>
 
 <script>
   var dispatcher = new WebSocketRails('localhost:3000/websocket');
@@ -175,7 +159,15 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
     var a = function() {
       if (distance != $('#area_name_tabmap').text()) {
         if (distance != null) {
+    var distance = document.getElementById("area_name_tabmap").innerHTML;
+        distance = Number(distance.substring(0, distance.length - 1));
+        if (distance==0){
+        document.getElementById("loveAlert").style.display = 'block';
+        }else{
+        document.getElementById("loveAlert").style.display = 'block';
+        }
           dispatcher.trigger("send_message", {artist_id: <%= @artist.id %>, distance: $('#area_name_tabmap').text(), nickname: "<%= current_user.nickname %>"})
+        }
         }
         distance = $('#area_name_tabmap').text();
       }
@@ -183,3 +175,5 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
     setInterval(a, 300);
   });
 </script>
+
+
