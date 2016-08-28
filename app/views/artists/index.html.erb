@@ -1,6 +1,14 @@
 <div class="container">
 <div class="row">
+<div class="col-xs-12 colorwhite centeredimg">
+<h3>近くにいるスター</h3>
+</div>
+</div>
 
+<div class="space10px"></div>
+<div class="space10px"></div>
+
+<div class="row">
 <% @artists.each do |artist| %>
   <%= link_to artist, {:controller => "artists", :action => "show"} do %>
     <div class="col-xs-12">
